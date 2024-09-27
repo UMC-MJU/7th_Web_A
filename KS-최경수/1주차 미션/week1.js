@@ -1,60 +1,52 @@
 // Variable
 let tdArray = new Array();
-let tdDataArray = new Array();
+let wordData;
 
 // Component
 const inputWord = document.querySelector('.inputWord');
 const toDoTbody = document.querySelector('.toDoData');
 const doneTbody = document.querySelector('.doneData');
-const toDoButton = document.querySelectorAll(".toDoData button");
 
 // Event 
-inputWord.addEventListener("keydown", pressEnter);
-
+inputWord.addEventListener("keyup", pressEnter);
 
 // Callback Function
 function pressEnter(event){
   if(event.key == "Enter" && inputWord.value != ""){
-    let wordData = inputWord.value;
-    createRow(toDoTbody);
-    insertDataToRow(wordData, "완료");
+    wordData = inputWord.value;
+    createRow(toDoTbody, wordData, "완료", "pressCompleteButton(this)");
     inputWord.value = null;
   }
 }
 
-function pressCompleteButton(btn, idx, arr){
-  toDoTbody.deleteRow(idx);
-  console.log("btn : " + btn);
-  console.log("idx : " + idx);
-  console.log("arr : " + arr);
+function pressCompleteButton(button){
+  wordData = button.parentElement.previousElementSibling.textContent;
+  createRow(doneTbody, wordData, "삭제", "pressDeleteButton(this)");
+  deleteRow(button.parentElement);
 }
 
-function pressDeleteButton(){
-  console.log("pressDeleteButton");
-
+function pressDeleteButton(button){
+  deleteRow(button.parentElement)
 }
 
 // Function
-function createRow(Tbody){
+function createRow(Tbody, data, button, fun){
   const tr = Tbody.insertRow();
   for(let i =0; i<4; i++){
     tdArray[i] = tr.insertCell();
   }
-  // tdDataArray.push(tdArray);
   tdArray[2].appendChild(document.createElement("button"));
+  insertDataToRow(data, button, fun)
 }
 
-function insertDataToRow(data, button){
+function insertDataToRow(data, button, fun){
   tdArray[1].appendChild(textToTextNode(data));
   tdArray[2].firstElementChild.appendChild(textToTextNode(button));
-  // tdArray[2].firstElementChild.addEventListener("click", pressCompleteButton);
-  // tdDataArray.forEach(element => {
-  //   element[2].addEventListener("click", pressCompleteButton);
-  // });
+  tdArray[2].firstElementChild.setAttribute("onClick", fun);
 }
 
-function deleteRow(){
-  
+function deleteRow(button){
+  button.parentElement.remove();
 }
 
 function textToTextNode(text){
