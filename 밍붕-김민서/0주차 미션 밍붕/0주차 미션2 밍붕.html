@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .container {
+                display: grid;
+                grid-template-rows: repeat(10, minmax(100px, 50px));
+                grid-template-areas:
+                    'header menu menu menu'
+                    'hero hero hero hero'
+                    'hero hero hero hero'
+                    'hero hero hero hero'
+                    'hero hero hero hero'
+                    'main main . fb'
+                    'main main . fb'
+                    'main main . fb'
+                    'main main . fb'
+                    'banner banner banner banner';
+
+            }
+            .header {
+                display: flex;
+                grid-area: header;
+                background-color: black;
+                align-items: center;
+                justify-content: center;
+                color: white;
+
+            }
+            .menu {
+                display: flex;
+                grid-area: menu;
+                background-color: red;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                color: white;
+            }
+            .hero {
+                display: flex;
+                grid-area: hero;
+                background-color: blue;
+                align-items: center;
+                justify-content: center;
+                color: white;
+            }
+            .main {
+                display: flex;
+                grid-area: main;
+                background-color: navy;
+                align-items: center;
+                justify-content: center;
+                color: white;
+            }
+            .fb {
+                display: flex;
+                flex-direction: column;
+                grid-area: fb;
+            }
+            .fb .image{
+                flex: 1; 
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: cyan; 
+            }
+            .fb .extra{
+                flex: 1; 
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: green; 
+            }
+            .banner {
+                display: flex;
+                grid-area: banner;
+                background-color: yellow;
+                align-items: center;
+                justify-content: center;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">HEADER</div>
+            <div class="menu">MENU</div>
+            <div class="hero">HERO</div>
+            <div class="main">MAIN</div>
+            <div class="fb">
+                <div class="image">IMAGE</div>
+                <div class="extra">EXTRA</div>
+            </div>
+            <div class="banner">BANNER</div>
+        </div>
+    </body>
+</html>
