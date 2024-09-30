@@ -6,4 +6,10 @@
   --w1-buttoncolor: #D5DFF0;
   --w1-placeholdercolor: #E8EDF4;
   --w1-inputcolor: #FEFEFE;
+
+  /* 2주차 사용 컬러 */
+  --w2-inputBackground: #ECECEC;
+  --w2-inputPlaceHolder: #8E8E8E;
+  --w2-inputFocusBorder: #000000;
+  --w2-delete : #FF0000;
 }

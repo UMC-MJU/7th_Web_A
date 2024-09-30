@@ -1,42 +1,104 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url("../../../0-공통/color.css");
+
+/* Common */
+body{
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+ 
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+button{
+  font-size: 16px;
+  font-weight: 550;
+  border: none;
+  background-color: white;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+/* <Header /> */
+
+header{
+  min-width: 797px;
+  display: flex;
+  justify-content: space-between;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+header h1{
+  font-size: 40px;
+  font-weight: bold;
 }
 
-.card {
-  padding: 2em;
+header .calenderInfo{
+  display: flex;
+  align-items: center;
 }
 
-.read-the-docs {
-  color: #888;
+header .calenderInfo > img{
+  width: 24px;
+  height: 24px;
+}
+
+header .calenderInfo > p{
+  font-size: 20px;
+  margin-left: 8px;
+  margin-top: 2px;
+}
+
+/* <Input /> */
+input[type=text]{
+  width: 100%;
+  height: 60px;
+  padding-left: 18px;
+  border: 0px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin: 29px 0 10px 0;
+  background-color: var(--w2-inputBackground);
+}
+
+input[type=text]::placeholder{
+  color: var(--w2-inputPlaceHolder);
+  font-size: 16px;
+}
+
+input[type=text]:focus{
+  border: 2px solid var(--w2-inputFocusBorder);
+  outline: none;
+}
+
+/* <Items /> */
+
+
+.todoitem .itemContainer:first-child{
+  margin-top: 25px;
+}
+
+.todoitem .itemContainer{
+  display: flex;
+  justify-content: space-between;
+  margin: 40px 0;
+}
+
+.todoitem input[type=checkbox]{
+  width: 18px;
+  height: 18px;
+}
+
+.todoitem  label{
+  font-size: 20px;
+  padding-left: 16px;
+}
+
+.todoitem .leftContainer{
+  padding-left: 5px;
+}
+
+.todoitem .rightContainer{
+  display: flex;
+  align-items: center;
+}
+
+.todoitem .rightContainer button:last-child{
+  color: var(--w2-delete);
 }

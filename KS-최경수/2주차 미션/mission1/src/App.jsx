@@ -1,33 +1,55 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import calenderIcon from './images/calendar_month.png'
+import Header from './components/Header';
+import Input from './components/Input';
+import Items from './components/Items';
+import Button from './components/Button';
+
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  // Data
+  const [todos, setTodos] = useState([
+    {id: 1, task: '투두 만들어보기'}
+  ]);
 
+  // Header
+  const date = new Date();
+  const dateFormatted = `${date.getFullYear()}.${date.getMonth()+1}.${date.getDate()}`;
+
+  // Component UseState
+  const [text, setText] = useState('');
+
+
+  // 1. 추가하기
+  const addTodo = () => {
+    setTodos((prev) => [
+      ...prev,
+      {id : Math.floor(Math.random()*100)+2, task: text},
+    ])
+    setText('');
+  };
+
+  // 2. 삭제하기
+  const deleteTodo = (id) => {
+    setTodos((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  // 3. 수정하기
+  const updateTodo = () => {
+    console.log("수정버튼 클릭"); 
+  };
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header img={calenderIcon} todayDate={dateFormatted}/>
+      <Input textEntered={text} fun={setText} addfun={addTodo}/>
+      {todos.map((todo, _) => (
+        <div key={todo.id} className="todoitem">
+            <Items data={todo} id={todo.id.toString()} deletefun={deleteTodo} updatefun={updateTodo}/>
+        </div>
+      ))}
     </>
   )
 }
