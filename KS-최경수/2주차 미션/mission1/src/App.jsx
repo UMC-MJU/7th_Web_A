@@ -39,7 +39,6 @@ function App() {
   const updateTodo = () => {
     console.log(editingId);
     console.log(editText);
-    setEditText(null)
     setTodos((prev) => prev.map((item) => item.id === editingId ? {...item, task:editText} : item))
     setIsEditingId('');
   };
