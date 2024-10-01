@@ -4,15 +4,12 @@ import calenderIcon from './images/calendar_month.png'
 import Header from './components/Header';
 import Input from './components/Input';
 import Items from './components/Items';
-import Button from './components/Button';
-
-
 
 
 function App() {
   // Data
   const [todos, setTodos] = useState([
-    {id: 1, task: '투두 만들어보기'}
+    {id:1, task:"first"},{id:2, task:"second"},{id:3, task:"third"}
   ]);
 
   // Header
@@ -21,7 +18,8 @@ function App() {
 
   // Component UseState
   const [text, setText] = useState('');
-
+  const [editingId, setIsEditingId] = useState('');
+  const [editText, setEditText] = useState('');
 
   // 1. 추가하기
   const addTodo = () => {
@@ -35,19 +33,32 @@ function App() {
   // 2. 삭제하기
   const deleteTodo = (id) => {
     setTodos((prev) => prev.filter((item) => item.id !== id));
-  };
+  };   
 
   // 3. 수정하기
   const updateTodo = () => {
-    console.log("수정버튼 클릭"); 
+    console.log(editingId);
+    console.log(editText);
+    setEditText(null)
+    setTodos((prev) => prev.map((item) => item.id === editingId ? {...item, task:editText} : item))
+    setIsEditingId('');
   };
-  return (
+
+
+  return (    
     <>
       <Header img={calenderIcon} todayDate={dateFormatted}/>
       <Input textEntered={text} fun={setText} addfun={addTodo}/>
       {todos.map((todo, _) => (
         <div key={todo.id} className="todoitem">
-            <Items data={todo} id={todo.id.toString()} deletefun={deleteTodo} updatefun={updateTodo}/>
+          {/* 수정 일때 */}
+          {editingId === todo.id && (
+            <Items data={todo} id={todo.id.toString()} deletefun={deleteTodo} updatefun={updateTodo} text={"완료"} setTextfun={setEditText}/>
+          )}
+          {/* 수정 아닐때 */}
+          {editingId !== todo.id && (
+            <Items data={todo} id={todo.id.toString()} deletefun={deleteTodo} updatefun={setIsEditingId} text={"수정"} />
+          )}
         </div>
       ))}
     </>

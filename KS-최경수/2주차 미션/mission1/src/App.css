@@ -68,7 +68,9 @@ input[type=text]:focus{
 }
 
 /* <Items /> */
-
+.todoitem{
+  font-size: 20px;
+}
 
 .todoitem .itemContainer:first-child{
   margin-top: 25px;
@@ -80,13 +82,23 @@ input[type=text]:focus{
   margin: 40px 0;
 }
 
-.todoitem input[type=checkbox]{
+.todoitem .checkbox{
   width: 18px;
   height: 18px;
 }
 
-.todoitem  label{
+.todoitem .editInput{
+  width: 699px;
+  border: none;
+  outline: none;
   font-size: 20px;
+}
+
+.todoitem  label{
+  width: 650px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
   padding-left: 16px;
 }
 
