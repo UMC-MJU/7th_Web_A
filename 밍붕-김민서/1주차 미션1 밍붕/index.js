@@ -1,4 +1,4 @@
-let $input = document.querySelector('#input');
+let $input = document.querySelector('.input');
 let $todoList = document.querySelector('.todoList');
 let $finishList = document.querySelector('.finishList');
 

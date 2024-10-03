@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../Item.module.css';
+import styles from '../styles/Item.module.css';
 
 function Item({ name, id, deleteTodo, updateTodo }) {
     const [isEditing, setIsEditing] = useState(false); // 수정 모드 상태

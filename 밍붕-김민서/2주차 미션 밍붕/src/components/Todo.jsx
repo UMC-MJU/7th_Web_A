@@ -1,4 +1,4 @@
-import styles from '../Todo.module.css';
+import styles from '../styles/Todo.module.css';
 import Input from './Input';
 import Item from './Item';
 

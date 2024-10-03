@@ -1,5 +1,5 @@
 import { MOVIES } from '../mocks/movies';
-import styles from '../movie.module.css'
+import styles from '../styles/movie.module.css';
 function Movie() {
     const movieData = MOVIES.results;
     console.log(movieData);

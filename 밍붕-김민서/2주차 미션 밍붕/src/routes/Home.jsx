@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from '../App.module.css';
+import styles from '../styles/App.module.css';
 import Header from '../components/Header';
 import Todo from '../components/Todo';
 
@@ -20,7 +20,7 @@ function Home() {
         copy[id] = text;
         setTodo(copy);
     }
-
+    
     return (
         <>
             <div className={styles.container}>
