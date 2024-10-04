@@ -13,4 +13,11 @@
   --w2-inputFocusBorder: #000000;
   --w2-delete : #FF0000;
 
+  /* 3주차 사용 컬러 */
+  --w3-background: #000000;
+  --w3-barbackground: #1F2225;
+  --w3-fontColor: #F5F7F9;
+  --w3-buttonColor: #FA2F66;
+  --w3-buttonHoverColor: #B32048;
+  --w3-logoColor: #FA2F66;
 }

@@ -1,6 +1,4 @@
 import './App.css'
-import { useEffect, useState } from 'react'
-import { styled } from 'styled-components';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // Page Connection
@@ -8,8 +6,10 @@ import Home from './pages/home';
 import Login from './pages/login';
 import SignUp from './pages/sing-up';
 import Search from './pages/search';
+import Movie from './pages/movie';
 import NotFound from './pages/not-found';
 import RootLayout from './layout/root-layout';
+
 
 function App() {
   // Router Connect
@@ -34,6 +34,10 @@ function App() {
         {
           path:'search',
           element: <Search/>
+        },
+        {
+          path:'movie',
+          element: <Movie/>
         }
       ]
     },
