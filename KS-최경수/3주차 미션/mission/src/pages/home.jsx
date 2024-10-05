@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from "axios";
-import Items from '../components/Items';
-import { styled } from 'styled-components';
+import Grid from '../components/grid';
 
 const Home = () => {
 
@@ -21,34 +20,10 @@ const Home = () => {
 
   return (
     <>
-      <ItemsContainer>
-        {movies.data?.results.map((movie) => (
-          <>
-            <ItemsWrapper>
-              <Items key={movie.id} data={movie} />
-            </ItemsWrapper>
-          </>
-        ))}
-      </ItemsContainer>
+    <Grid movies={movies}></Grid>
     </>
   )
 }
 
 export default Home;
 
-const ItemsContainer = styled.main`
-  box-sizing: border-box;
-  display: grid;
-  padding: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(134px, auto));
-  gap: 15px;
-
-  > div{
-    background-color: black;
-    width: 130px;
-    height: 240px;
-  }
-`
-
-const ItemsWrapper = styled.div`
-`

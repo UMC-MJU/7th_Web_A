@@ -7,8 +7,6 @@ const Items = ({data}) => {
   const movietitle = data.title;
   const moviedate = data.release_date;
 
-  console.log(data);
-
   return (
     <>
     <MoviesItem image={movieimgPath}></MoviesItem>

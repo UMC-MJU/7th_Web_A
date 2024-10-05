@@ -6,7 +6,7 @@ import Home from './pages/home';
 import Login from './pages/login';
 import SignUp from './pages/sing-up';
 import Search from './pages/search';
-import Movie from './pages/movie';
+import MovieCategory from './pages/moviecategory';
 import NotFound from './pages/not-found';
 import RootLayout from './layout/root-layout';
 
@@ -36,8 +36,8 @@ function App() {
           element: <Search/>
         },
         {
-          path:'movie',
-          element: <Movie/>
+          path:'moviecategory',
+          element: <MovieCategory/>
         }
       ]
     },

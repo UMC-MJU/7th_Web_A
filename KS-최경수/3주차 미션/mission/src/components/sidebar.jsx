@@ -8,7 +8,7 @@ const Sidebar = () => {
   return (
     <>
       <Link to={'/search'}><FaSearch/><List listText={"찾기"}/></Link>
-      <Link to={'/movie'}><BiSolidMoviePlay /><List listText={"영화"}/></Link>
+      <Link to={'/moviecategory'}><BiSolidMoviePlay /><List listText={"영화"}/></Link>
     </>
   )
 }
