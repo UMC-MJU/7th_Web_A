@@ -4,7 +4,6 @@ import Items from './Items';
 import axios from "axios";
 
 const Grid = ({url}) => {
-  console.log(url);
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
