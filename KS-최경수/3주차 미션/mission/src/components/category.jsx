@@ -1,13 +1,16 @@
 import { styled } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Category = ({ datas }) => {
 
   return (
     <>
       {datas.map((data) => (
-        <Categoryitems key={data.id} image={`${data.src}`}>
+        <Link key={data.id} to={data.link}>
+         <Categoryitems image={`${data.src}`}>
           <Categorylabel>{data.text}</Categorylabel>
         </Categoryitems>
+        </Link>
       ))};
     </>
   )

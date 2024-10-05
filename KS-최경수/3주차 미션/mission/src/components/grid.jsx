@@ -1,7 +1,24 @@
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import Items from './Items';
+import axios from "axios";
 
-const Grid = ({movies}) => {
+const Grid = ({url}) => {
+  console.log(url);
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const getMovies = async () => {
+        const movies = await axios.get(url, {
+            headers: {
+                Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMDU5YjgxZjNhNzM4ODM1NWY1M2ZjNTdjMDgzMzI5ZSIsIm5iZiI6MTcyNzk1NTc1OC4zNDc4NjksInN1YiI6IjY2ZmU3ZmE0YzlhMTBkNDZlYTdjOGZlNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nKUWbSsB_icBkh1vRdGa61tuXuwXNpjagQsoqLldSN0`,
+                accept: 'application/json'
+            }
+        })
+        setMovies(movies);
+    }
+    getMovies()
+}, []);
 
   return (
     <>
