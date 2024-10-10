@@ -4,7 +4,7 @@ import "../../../../0-공통/color.css"
 const Items = ({data}) => {
 
   const movieImgPath = "https://image.tmdb.org/t/p/original" + data.poster_path;
-  const movietitle = data.title;
+  const movieTitle = data.title;
   const moviedate = data.release_date;
 
   return (
