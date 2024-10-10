@@ -1,0 +1,20 @@
+main{
+  box-sizing: border-box;
+  display: grid;
+  padding: 10px;
+  grid-template-columns: repeat(auto-fill, 130px);
+  gap: 15px;
+}
+
+main .movie{
+  background-color: black;
+  width: 130px;
+  height: 200px;
+  border-radius: 15px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+main .movie:hover{
+  filter: brightness(0.5);
+}
