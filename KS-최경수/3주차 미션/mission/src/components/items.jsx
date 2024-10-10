@@ -9,9 +9,9 @@ const Items = ({data}) => {
 
   return (
     <>
-    <MoviesItem image={movieimgPath}></MoviesItem>
-    <MoviesItemTitle>{movietitle}</MoviesItemTitle>
-    <MoviesItemDate>{moviedate}</MoviesItemDate>
+    <MoviesItem image={movieImgPath}></MoviesItem>
+    <MoviesItemTitle>{movieTitle}</MoviesItemTitle>
+    <MoviesItemDate>{movieDate}</MoviesItemDate>
     </>
   )
 }
