@@ -5,7 +5,7 @@ const Items = ({data}) => {
 
   const movieImgPath = "https://image.tmdb.org/t/p/original" + data.poster_path;
   const movieTitle = data.title;
-  const moviedate = data.release_date;
+  const movieDate = data.release_date;
 
   return (
     <>
