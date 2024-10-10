@@ -22,7 +22,6 @@ const Movies = () => {
 
   let apiUrl = `https://api.themoviedb.org/3/movie/${categoryId}?language=ko-KR&page=1`;
   
-  console.log(apiUrl)
   return (
     <>
     <Grid url={apiUrl}></Grid>
