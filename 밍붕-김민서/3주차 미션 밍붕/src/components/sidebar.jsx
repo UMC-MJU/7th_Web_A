@@ -38,8 +38,9 @@ const SidebarStyle = styled.aside`
 
 const SideMenu = styled.div`
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    width: 100%;
+    width: 40%;
     height: 50px;
     color: white;
 `;

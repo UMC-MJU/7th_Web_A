@@ -1,9 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import cbr from '../assets/cbr500r.png';
-import ninja from '../assets/ninja.png';
-import rocket from '../assets/rocket.png';
-import r1 from '../assets/r1.png';
+import { cbr, ninja, r1, rocket } from '../assets';
 
 const Category = () => {
     return (

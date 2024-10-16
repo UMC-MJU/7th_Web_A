@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom';
 
 const MoviesPage = () => {
     const [movies, setMovies] = useState([]);
-    let { id } = useParams();
-    id = id || 'popular';
+    const { id: paramId } = useParams();
+    const id = paramId || 'popular';
     const getMovies = async () => {
         const movies = await axios.get(`https://api.themoviedb.org/3/movie/${id}?language=ko-KR&page=1`, {
             headers: {
@@ -60,7 +60,7 @@ const StyledImg = styled.img`
 const StyledLink = styled.a`
     color: #fff;
     font-size: 16px;
-    font-weight: ${(props) => (props.bold ? 'bold' : 'normal')}; 
+    font-weight: ${(props) => (props.bold ? 'bold' : 'normal')};
 
     &:hover {
         color: #f0e68c;
