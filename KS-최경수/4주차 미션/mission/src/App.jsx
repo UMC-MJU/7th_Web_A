@@ -8,6 +8,7 @@ import SignUp from './pages/sing-up';
 import Search from './pages/search';
 import Movies from './pages/movie';
 import MovieCategory from './pages/moviecategory';
+import MovieDetail from './pages/moviedetail';
 import NotFound from './pages/not-found';
 import RootLayout from './layout/root-layout';
 
@@ -39,6 +40,10 @@ function App() {
         {
           path: 'movies/:movieCategory',
           element: <Movies/>
+        },
+        {
+          path: 'movies/movieitem/:movieId',
+          element: <MovieDetail/>
         },
         {
           path:'moviecategory',

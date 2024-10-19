@@ -3,24 +3,29 @@ import { styled } from 'styled-components';
 import Items from './Items';
 import axios from "axios";
 import { axiosInstance } from '../apis/axios-instance';
+import useCustomFetch from '../hooks/useCustomFetch';
 
 const Grid = ({url}) => {
-  console.log(url);
-  const [movies, setMovies] = useState([]);
-  useEffect(() => {
-    const getMovies = async () => {
-        const movies = await axiosInstance.get(url);
-        setMovies(movies);
-    }
-    getMovies()
-}, []);
+  const {data:movies, isLoading, isError} = useCustomFetch(url);
+
+  if(isLoading){
+    return <div>
+      <h1 style={{color: 'white'}}>로딩 중입니다... </h1>
+    </div>
+  }
+
+  if(isError){
+    return <div>
+      <h1 style={{color: 'white'}}>에러 입니다.... </h1>
+    </div>
+  }
 
   return (
     <>
      <ItemsContainer>
         {movies.data?.results.map((movie) => (
             <div key={movie.id}>
-              <Items data={movie} />
+              <Items datas ={movie} />
             </div>
         ))}
       </ItemsContainer>
