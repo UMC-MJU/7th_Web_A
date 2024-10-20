@@ -1,17 +1,16 @@
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
-import Items from './Items';
+import Items from './items';
 import axios from "axios";
 import { axiosInstance } from '../apis/axios-instance';
 import useCustomFetch from '../hooks/useCustomFetch';
+import Loading from '../pages/loading';
 
 const Grid = ({url}) => {
   const {data:movies, isLoading, isError} = useCustomFetch(url);
 
   if(isLoading){
-    return <div>
-      <h1 style={{color: 'white'}}>로딩 중입니다... </h1>
-    </div>
+    return <Loading/>
   }
 
   if(isError){

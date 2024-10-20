@@ -6,15 +6,12 @@ import { useState } from 'react';
 
 
 const Items = ({datas}) => {
-
   const navigate = useNavigate();
-  console.log(datas);
   const [movieData, setMoviceData] = useState({
     id: datas.id,
     movieImgPath: `https://image.tmdb.org/t/p/original${datas.poster_path}`,
     movieTitle: datas.title,
     movieDate : datas.release_date,
-
   });
 
   return (
