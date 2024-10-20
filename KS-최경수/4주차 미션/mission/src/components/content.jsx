@@ -8,13 +8,7 @@ const Content = ({url}) => {
   let movieYears = moviesDetail.data?.release_date.split('-');
   let movieImgPath = `https://image.tmdb.org/t/p/original${moviesDetail.data?.poster_path}`;
 
-  if(isLoading){
-    return(
-      <>
-      <Loading/>
-      </>
-    )
-  }
+  if(isLoading) return <Loading/>
 
   return (
     <>

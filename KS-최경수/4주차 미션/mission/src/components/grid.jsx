@@ -42,7 +42,6 @@ const ItemsContainer = styled.main`
   gap: 15px;
 
   > div{
-    background-color: black;
     width: 130px;
     height: 240px;
   }
