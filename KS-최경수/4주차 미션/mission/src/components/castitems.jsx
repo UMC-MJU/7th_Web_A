@@ -1,7 +1,10 @@
 import { styled } from 'styled-components';
+import { Profile1,Profile2,Profile3,Profile4,Profile5,Profile6,Profile7 } from '../assets/images/imageExport';
 
 const CastItems = ({datas}) => {
-  let castImg = `https://image.tmdb.org/t/p/original${datas.profile_path}`;
+  const profiles = [Profile1, Profile2, Profile3, Profile4, Profile5, Profile6, Profile7];
+  const randomIndex = Math.floor(Math.random() * profiles.length);
+  let castImg = datas.profile_path == null ?  profiles[randomIndex] :`https://image.tmdb.org/t/p/original${datas.profile_path}`;
 
   return (
     <CastItemContainer>
