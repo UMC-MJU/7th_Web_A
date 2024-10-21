@@ -8,6 +8,7 @@ const Sidebar = () => {
 
   return (
     <>
+      <BlankDiv></BlankDiv>
       <SidebarWrapper>
         <Link to={'/search'}><FaSearch/><List listText={"찾기"}/></Link>
         <Link to={'/moviecategory'}><BiSolidMoviePlay /><List listText={"영화"}/></Link>
@@ -16,10 +17,11 @@ const Sidebar = () => {
     </>
   )
 }
-
+const BlankDiv = styled.div`
+  height: 100vh;
+`
 const SidebarWrapper = styled.nav`
   width: 270px;
-  height: 100vh;
   background-color: var(--w3-barbackground);
 
     a {
