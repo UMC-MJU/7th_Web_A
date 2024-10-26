@@ -1,35 +1,59 @@
 import { styled, css } from 'styled-components';
-import {useForm} from 'react-hook-form'
+// import {useForm} from 'react-hook-form'
+import useForm from '../hooks/use-form';
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
+import { useState } from 'react';
+import { validateLogin } from '../utils/validate.js';
 
 const Login = () => {
-  const schema = yup.object().shape({
-    email: yup.string().required("이메일을 입력해주세요").matches(
-      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
-      "올바른 이메일 형식이 아닙니다. 다시 확인해주세요"
-    ),
-    password: yup.string().min(8, "비밀번호는 8~16자 사이로 입력해주세요!").max(16, "비밀번호는 8~16자 사이로 입력해주세요!").required(),
+
+
+  const login = useForm({
+    initialValue: {
+      email: '',
+      password: '',
+    },
+    validate: validateLogin
   })
 
-  const {register, handleSubmit, formState: {errors}} = useForm({
-    resolver: yupResolver(schema)
-  });
+  // const schema = yup.object().shape({
+  //   email: yup.string().required("이메일을 입력해주세요").matches(
+  //     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
+  //     "올바른 이메일 형식이 아닙니다. 다시 확인해주세요"
+  //   ),
+  //   password: yup.string().min(8, "비밀번호는 8~16자 사이로 입력해주세요!").max(16, "비밀번호는 8~16자 사이로 입력해주세요!").required(),
+  // })
 
-  const onSubmit = (data) => {
-    console.log(data);
+  // const {register, handleSubmit, formState: {errors}} = useForm({
+  //   resolver: yupResolver(schema)
+  // });
+
+  // const onSubmit = (data) => {
+  //   console.log(data);
+  // }
+
+  const handlePressLogin = () => {
+    console.log(login.values.email, login.values.password)
   }
   
   return (
     <LoginContainer>
     <LoginTitle>로그인</LoginTitle>
-    <form onSubmit={handleSubmit(onSubmit)}>
+    {/* <form onSubmit={handleSubmit(onSubmit)}>
       <LoginEmailInput type={'email'}{...register("email")} placeholder='이메일을 입력해주세요!'/>
       <LoginEamilError>{errors.email?.message}</LoginEamilError>
       <LoginPasswordInput type={'password'}{...register("password")} placeholder='비밀번호를 입력해주세요!'/>
       <LoginPasswordError>{errors.password?.message}</LoginPasswordError>
       <LoginSubmit type={'submit'} value={'로그인'} disabled={errors.email === undefined && errors.password === undefined ? false : true}/>
-    </form>
+    </form> */}
+      <LoginEmailInput error={login.touched.email && login.errors.email} type={'email'} 
+      placeholder={'이메일을 입력해주세요!'} {...login.getTextInputProps('email')} />
+      {login.touched.email && login.errors.email && <LoginEamilError>{login.errors.email}</LoginEamilError>}
+      <LoginPasswordInput error={login.touched.password && login.errors.password} type={'password'} 
+      placeholder={'비밀번호를 입력해주세요!'}{...login.getTextInputProps('password')}/>
+      {login.touched.password && login.errors.password && <LoginPasswordError>{login.errors.password}</LoginPasswordError>}
+      <button onClick={handlePressLogin}>로그인</button>
     </LoginContainer>
   )
 }
@@ -69,6 +93,7 @@ const ErrorCommonStyle = css`
 
 const LoginEmailInput = styled.input`
   ${InputCommonStyle}
+  border: ${props => props.error ? '4px solid red' : '1px solid #ccc'};
   margin-top: 35px;
 
 `
@@ -78,6 +103,7 @@ const LoginEamilError = styled.p`
 
 const LoginPasswordInput = styled.input`
   ${InputCommonStyle}
+  border: ${props => props.error ? '2px solid red' : '1px solid #ccc'};
   margin-top: 15px;
 `
 
