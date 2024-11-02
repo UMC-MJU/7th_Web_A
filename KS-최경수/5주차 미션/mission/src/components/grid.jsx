@@ -9,15 +9,16 @@ import Loading from '../pages/loading';
 const Grid = ({url}) => {
   const {data:movies, isLoading, isError} = useCustomFetch(url);
 
-  if(isLoading){
-    return <Loading/>
-  }
+   // 5주차 강의에서 다뤄진 CustomHook -> Suspense로 리팩토링하여 주석처리
+  // if(isLoading){
+  //   return <Loading/>
+  // }
 
-  if(isError){
-    return <div>
-      <h1 style={{color: 'white'}}>에러 입니다.... </h1>
-    </div>
-  }
+  // if(isError){
+  //   return <div>
+  //     <h1 style={{color: 'white'}}>에러 입니다.... </h1>
+  //   </div>
+  // }
 
   return (
     <>

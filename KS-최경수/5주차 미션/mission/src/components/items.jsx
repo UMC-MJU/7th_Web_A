@@ -1,6 +1,5 @@
 import { styled } from 'styled-components';
 import "../../../../0-공통/color.css"
-import useCustomFetch from '../hooks/useCustomFetch';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 

@@ -16,10 +16,10 @@ export default Loading;
 
 const LoadingContainer = styled.div`
   display: flex;
+  z-index: 999,
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
 `
 
 const LoadingTitle = styled.p`

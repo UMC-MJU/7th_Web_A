@@ -4,7 +4,7 @@ import { Profile1,Profile2,Profile3,Profile4,Profile5,Profile6,Profile7 } from '
 const CastItems = ({datas}) => {
   const profiles = [Profile1, Profile2, Profile3, Profile4, Profile5, Profile6, Profile7];
   const randomIndex = Math.floor(Math.random() * profiles.length);
-  let castImg = datas.profile_path == null ?  profiles[randomIndex] :`https://image.tmdb.org/t/p/original${datas.profile_path}`;
+  const castImg = datas.profile_path == null ?  profiles[randomIndex] :`${import.meta.env.VITE_MOVIE_IMG_URL}${datas.profile_path}`;
 
   return (
     <CastItemContainer>

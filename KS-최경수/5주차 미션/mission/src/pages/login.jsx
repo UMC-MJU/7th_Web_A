@@ -8,7 +8,7 @@ import { validateLogin } from '../utils/validate.js';
 
 const Login = () => {
 
-
+  /* 실습2 강의 */
   // const login = useForm({
   //   initialValue: {
   //     email: '',
@@ -33,6 +33,7 @@ const Login = () => {
     console.log(data);
   }
 
+  /* 실습2 강의 */
   // const handlePressLogin = () => {
   //   console.log(login.values.email, login.values.password)
   // }
