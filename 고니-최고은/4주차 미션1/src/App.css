@@ -6,3 +6,7 @@ body {
     background-color: rgb(16, 16, 16);
     color: white;
 }
+
+h1{
+    margin-top: 10px;
+}
