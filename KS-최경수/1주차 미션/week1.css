@@ -1,0 +1,90 @@
+@import url("../0-공통/color.css");
+
+/* element css */
+body{
+  background-color: var(--w1-maincolor);
+}
+
+header{
+  padding: 100px 0;
+  margin: 0 100px;
+  border-bottom: 1px solid var(--w1-bordercolor);
+
+}
+
+header h1{
+  font-size: 50px;
+  text-align: center;
+  font-weight: 700;
+}
+
+main{
+  display: flex;
+  justify-content: center;
+}
+
+/* class css */
+
+.inputWord{
+  box-sizing: border-box;
+  margin: 25px 0;
+  padding: 10px;
+  width: 800px;
+  height: 50px;
+  background-color: var(--w1-inputcolor);
+  border: 2px solid black;
+}
+
+.inputWord::placeholder{
+  color: var(--w1-placeholdercolor);
+  font-style: italic;
+  font-size: 16px;
+}
+
+.bottomWrapper{
+  display: flex;
+  justify-content: center;
+}
+
+
+table{
+  width: 400px;
+  font-weight: 700;
+ 
+}
+
+table tr th{
+  font-size: 18px;
+  text-decoration: underline var(--w1-bordercolor) 3px;
+  text-underline-offset: 8px;
+  padding-bottom: 60px;
+}
+
+table tr td{
+  font-size: 26px;
+  box-sizing: border-box;
+  vertical-align: middle;
+  padding: 20px 0;
+}
+
+table tr td button{
+  background-color: var(--w1-bordercolor);
+  border: none;
+  font-size: 13px;
+  padding: 8px;
+}
+
+table tr td:nth-child(1),
+table tr td:nth-child(4){
+  width: 80px;
+}
+
+table tr td:nth-child(2),
+table tr td:nth-child(3){
+  border-bottom: 4px solid var(--w1-bordercolor);
+}
+
+
+table tr td:nth-child(3){
+  width: 50px;
+}
