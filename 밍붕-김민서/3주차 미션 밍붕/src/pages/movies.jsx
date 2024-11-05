@@ -11,7 +11,7 @@ const MoviesPage = () => {
         const movies = await axios.get(`https://api.themoviedb.org/3/movie/${id}?language=ko-KR&page=1`, {
             headers: {
                 Authorization:
-                    'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNWI3NGNjNGVjM2JmYTA4MjE1YzAwZWE5MWJmODA3NyIsIm5iZiI6MTcyODI2NTM1Ny4zMjU4ODUsInN1YiI6IjY3MDMzYjJmMTU5MmVmMWJhOTg1YWM5YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WHjM3SzWV-Ou0LN67p8r_LYgRIGR66e2UhQkjsqbU4E',
+                    'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyYmMwMjY2NTYxZGUxYTY1MjM2NTU4N2Y4MWQ3YTlkOCIsIm5iZiI6MTczMDE2ODQ2MC4wNDIwMTksInN1YiI6IjY3MDMzYjJmMTU5MmVmMWJhOTg1YWM5YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._yldHvvfDB7izDkNyL6deYV22xl12z9FhCK9G2zv4A4',
             },
         });
         setMovies(movies);
