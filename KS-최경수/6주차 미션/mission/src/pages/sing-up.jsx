@@ -22,22 +22,20 @@ const SignUp = () => {
     resolver: yupResolver(schema)
   });
 
-  const onSubmit = (data) => {
-   axios.post("http://localhost:3000/auth/register", {
-      email: data.email,
-      password: data.password,
-      passwordCheck: data.passwordcheck,
-   })
-    .then((response) => {
-      console.log(response.status);
-      if(response.status == 201) {
-        alert("회원가입이 완료되었습니다.")
-        return navigate("/login");
-      }
-    })
-    .catch((error) => {
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post(import.meta.env.VITE_USER_API_URL, {
+        email: data.email,
+        password: data.password,
+        passwordCheck: data.passwordcheck,
+     }); 
+     if(response.status == 201) {
+      alert("회원가입이 완료되었습니다.")
+      return navigate("/login");
+    }
+    } catch(error){
       console.log(error);
-    })
+    }
   }
 
   return (
