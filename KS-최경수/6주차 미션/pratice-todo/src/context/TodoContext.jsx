@@ -40,7 +40,7 @@ export function TodoContextProvider({children}) {
       setIsEditingId('');
     };
   return <TodoContext.Provider value={{
-    todos, setTodos, text, setText, editingId, setIsEditingId, setEditText,
+    dateFormatted, todos, setTodos, text, setText, editingId, setIsEditingId, setEditText,
      addTodo, deleteTodo, updateTodo
   }}>{children}</TodoContext.Provider>
 }

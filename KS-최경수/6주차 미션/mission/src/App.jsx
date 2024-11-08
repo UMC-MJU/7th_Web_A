@@ -61,6 +61,22 @@ function App() {
           element: <MovieDetail/>
         },
         {
+          path: 'movies/now-playing/movies/movieitem/:movieId',
+          element: <MovieDetail/>
+        },
+        {
+          path: 'movies/popular/movies/movieitem/:movieId',
+          element: <MovieDetail/>
+        },
+        {
+          path: 'movies/top-rated/movies/movieitem/:movieId',
+          element: <MovieDetail/>
+        },
+        {
+          path: 'movies/up-coming/movies/movieitem/:movieId',
+          element: <MovieDetail/>
+        },
+        {
           path:'moviecategory',
           element: <MovieCategory/>
         }
