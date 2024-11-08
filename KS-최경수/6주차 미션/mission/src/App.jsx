@@ -1,18 +1,9 @@
 import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import React, { Suspense, lazy } from 'react';
+import { LoginContextProvider } from './context/LoginContext';
 
 // Page Connection
-// import Home from './pages/home';
-// import Login from './pages/login';
-// import SignUp from './pages/sing-up';
-// import Search from './pages/search';
-// import Movies from './pages/movie';
-// import MovieCategory from './pages/moviecategory';
-// import MovieDetail from './pages/moviedetail';
-// import NotFound from './pages/not-found';
-// import RootLayout from './layout/root-layout';
-
 const Home = React.lazy(() => import("./pages/home"));
 const Login = React.lazy(() => import("./pages/login"));
 const SignUp = React.lazy(() => import("./pages/sing-up"));
@@ -86,7 +77,9 @@ function App() {
 
   return (
     <Suspense fallback={<Loading/>}>
-          <RouterProvider router={router} />
+      <LoginContextProvider>
+        <RouterProvider router={router} />
+      </LoginContextProvider>
     </Suspense>
 
   )

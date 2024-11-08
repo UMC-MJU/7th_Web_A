@@ -3,10 +3,16 @@ import {useForm} from 'react-hook-form'
 // import useForm from '../hooks/use-form';
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { LoginContext } from '../context/LoginContext.jsx';
 import { validateLogin } from '../utils/validate.js';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const {isLogin} = useContext(LoginContext);
+  const navigate = useNavigate();
+
   const schema = yup.object().shape({
     email: yup.string().required("이메일을 입력해주세요").matches(
       /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
@@ -19,8 +25,23 @@ const Login = () => {
     resolver: yupResolver(schema)
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try{
+      const response = await axios.post(`${import.meta.env.VITE_USER_API_URL}/login`, {
+        email: data.email,
+        password: data.password
+      })
+      if(response.status == 201){
+        localStorage.setItem("accessToken", response.data.accessToken);
+        localStorage.setItem("refreshToken", response.data.refreshToken);
+        isLogin(true);
+        alert("로그인이 완료되었습니다!");
+        return navigate("/");
+      }
+      console.log(response);
+    } catch(error){
+      console.log(error);
+    }
   }
 
   

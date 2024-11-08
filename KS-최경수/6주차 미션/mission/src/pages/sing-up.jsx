@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import useCustomPost from '../hooks/useCustomPost';
 
 const SignUp = () => {
-
   const navigate = useNavigate();
   const schema = yup.object().shape({
     email: yup.string().required("이메일을 입력해주세요").matches(
@@ -24,7 +23,7 @@ const SignUp = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post(import.meta.env.VITE_USER_API_URL, {
+      const response = await axios.post(`${import.meta.env.VITE_USER_API_URL}/register`, {
         email: data.email,
         password: data.password,
         passwordCheck: data.passwordcheck,

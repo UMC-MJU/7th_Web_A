@@ -3,9 +3,12 @@ import Navbar from "../components/navbar";
 import Sidebar from "../components/sidebar";
 import { styled } from 'styled-components';
 import "../../../../0-공통/color.css";
+import { useContext } from "react";
+import { LoginContext } from "../context/LoginContext";
 
 const RootLayout = () => {
-
+  const {login} = useContext(LoginContext)
+  console.log(login);
   return (
     <>
     <Navbar />
