@@ -21,4 +21,18 @@
   --w3-buttonHoverColor: #B32048;
   --w3-logoColor: #FA2F66;
   --w3-categorytitle: rgb(0,0,0,0.5);
+
+  /* 4주차 사용 컬러 */
+
+  --w4-background: #000000;
+  --w4-textColor : #FFFFFF;
+  --w4-spinner: #FA2F66;
+  --w4-castRole: #777777;
+
+  /* 5주차 사용 컬러 */
+  --w5-titlecolor : #FFFFFF;
+  --w5-buttonColor: #FA2F66;
+  --w5-disabledbuttonColor: #484848;
+  --w5-errorColor: #ff0000;
+  --w5-background: #000000;
 }
