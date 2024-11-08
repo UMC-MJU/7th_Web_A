@@ -1,16 +1,36 @@
 import { Link } from "react-router-dom";
 import Button from "./button";
 import { styled } from 'styled-components';
+import { useContext, useEffect } from "react";
+import { LoginContext } from "../context/LoginContext";
 
 const Navbar = () => {
+  const {login, isLogin} = useContext(LoginContext);
+
+  // 웹 접속시 accessToken이 있을 경우, login = true
+  // useEffect(() => {
+  //   isLogin(!!localStorage.getItem("accessToken"));
+  // }, [])
+
+  console.log(login);
 
   return (
     <>
       <NavbarWrapper>
         <Link to={'/'}>YONGCHA</Link>
         <div>
-          <Link to={'/login'}>로그인</Link>
-          <Link to={'/singup'}><Button buttonText={"회원가입"} /></Link>
+          {/* 로그인 됬을때 */}
+          {login &&(
+            <div>테스트</div>
+          )}
+          {/* 로그인 안됬을때 */}
+          {!login &&(
+            <>
+              <Link to={'/login'}>로그인</Link>
+              <Link to={'/singup'}><Button buttonText={"회원가입"} /></Link>
+            </>
+          )}
+
         </div>
       </NavbarWrapper>
     </>
