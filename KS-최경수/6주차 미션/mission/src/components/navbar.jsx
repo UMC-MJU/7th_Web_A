@@ -6,7 +6,7 @@ import { LoginContext } from "../context/LoginContext";
 import axios from "axios";
 
 const Navbar = () => {
-  const { login, isLogin, accessToken, setAccessToken } = useContext(LoginContext);
+  const { login, isLogin } = useContext(LoginContext);
   const [nick, setNick] = useState('');
 
   useEffect(() => {
