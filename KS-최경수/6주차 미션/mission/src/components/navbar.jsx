@@ -3,11 +3,10 @@ import Button from "./button";
 import { styled } from 'styled-components';
 import { useContext, useEffect, useState } from "react";
 import { LoginContext } from "../context/LoginContext";
-import useCustomFetch from "../hooks/useCustomFetch";
 import axios from "axios";
 
 const Navbar = () => {
-  const { login, isLogin } = useContext(LoginContext);
+  const { login, isLogin, accessToken, setAccessToken } = useContext(LoginContext);
   const [nick, setNick] = useState('');
 
   useEffect(() => {
@@ -25,6 +24,13 @@ const Navbar = () => {
     }
 
   }, [login])
+
+  const delteToken = () => {
+    alert('로그아웃 되었습니다!');
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    isLogin(false)
+  }
 
 
   return (
@@ -56,9 +62,7 @@ const Navbar = () => {
 
 export default Navbar;
 
-const delteToken = () => {
 
-}
 
 const NavbarWrapper = styled.nav`
   display: flex;
@@ -90,6 +94,7 @@ const Nick = styled.span`
 `
 
 const Logout = styled.span`
+  cursor: pointer
 `
 
 
