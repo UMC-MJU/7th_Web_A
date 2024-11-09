@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { axiosInstance } from "../apis/axios-instance";
-import { userInsatance } from "../apis/axios-user";
 
 const useCustomFetch = (url) => {
   const [data, setData] = useState('');
