@@ -4,7 +4,6 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-import useCustomPost from '../hooks/useCustomPost';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -23,7 +22,7 @@ const SignUp = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post(`${import.meta.env.VITE_USER_API_URL}/register`, {
+      const response = await axios.post(`${import.meta.env.VITE_USER_API_URL}/auth/register`, {
         email: data.email,
         password: data.password,
         passwordCheck: data.passwordcheck,

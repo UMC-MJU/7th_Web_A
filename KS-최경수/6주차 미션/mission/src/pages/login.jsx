@@ -27,7 +27,7 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try{
-      const response = await axios.post(`${import.meta.env.VITE_USER_API_URL}/login`, {
+      const response = await axios.post(`${import.meta.env.VITE_USER_API_URL}/auth/login`, {
         email: data.email,
         password: data.password
       })

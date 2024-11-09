@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { axiosInstance } from "../apis/axios-instance";
+import { userInsatance } from "../apis/axios-user";
 
 const useCustomFetch = (url) => {
   const [data, setData] = useState('');
@@ -10,7 +11,7 @@ const useCustomFetch = (url) => {
     const fetchData = async () => {
       setIsLoading(true);
       try{
-        const response = await axiosInstance.get(url)
+        const response =  await axiosInstance.get(url)
         setData(response);
       } catch(error){
         setIsError(true);
