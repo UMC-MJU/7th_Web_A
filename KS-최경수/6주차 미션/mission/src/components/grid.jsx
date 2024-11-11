@@ -8,6 +8,7 @@ const Grid = ({url, keyword}) => {
   const {data:movies, isLoading, isError} = useCustomFetch(url);
 
 
+  // 로딩시 보여지는 skeleton UI
   if(isLoading){
     return (
       <ItemsContainer>

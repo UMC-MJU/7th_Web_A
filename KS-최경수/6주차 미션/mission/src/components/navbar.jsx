@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Button from "./button";
 import { styled } from 'styled-components';
 import { useContext, useEffect, useState } from "react";
+import { userInstance } from "../apis/axios-user";
 import { LoginContext } from "../context/LoginContext";
 import axios from "axios";
 
@@ -12,6 +13,12 @@ const Navbar = () => {
   useEffect(() => {
     if (!!localStorage.getItem("accessToken")) {
       const getNick = async () => {
+        // try{
+        //   const user = await userInstance.get('/user/me');
+        //   console.log(user)
+        //   setNick(user.data.email.split('@')[0]);
+        // } catch(error){
+        // }
         const user = await axios.get(`${import.meta.env.VITE_USER_API_URL}/user/me`, {
           headers: {
             Authorization:`Bearer ${localStorage.getItem("accessToken")}`
