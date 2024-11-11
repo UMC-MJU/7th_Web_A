@@ -14,9 +14,9 @@ const Content = ({url}) => {
       <MoviePosterImg image={movieImgPath}>
         <MovieContainer>
           <MovieTitle>{moviesDetail.data?.title}</MovieTitle>
-          <MovieGrade>평균 {moviesDetail.data?.vote_average}</MovieGrade>
+          <MovieGrade>{!isLoading && ('평균')} {moviesDetail.data?.vote_average}</MovieGrade>
           <MovieYears>{movieYears?.[0]}</MovieYears>
-          <MovieRunTime>{moviesDetail.data?.runtime} 분</MovieRunTime>
+          <MovieRunTime>{moviesDetail.data?.runtime}{!isLoading && ('분')} </MovieRunTime>
           <MovieTagLine>{moviesDetail.data?.tagline}</MovieTagLine>
           <MovieDescription>{moviesDetail.data?.overview}</MovieDescription>
         </MovieContainer>
