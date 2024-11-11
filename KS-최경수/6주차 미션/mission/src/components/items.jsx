@@ -15,7 +15,7 @@ const Items = ({datas}) => {
 
   return (
     <>
-    <MoviesItem image={movieData.movieImgPath} onClick={() => navigate(`movies/movieitem/${datas.id}`, {replace: false, state: movieData})}></MoviesItem>
+    <MoviesItem image={movieData.movieImgPath} onClick={() => navigate(`/movies/${datas.id}`, {replace: false, state: movieData})}></MoviesItem>
     <MoviesItemTitle>{movieData.movieTitle}</MoviesItemTitle>
     <MoviesItemDate>{movieData.movieDate}</MoviesItemDate>
     </>

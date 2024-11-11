@@ -8,7 +8,10 @@ const Home = React.lazy(() => import("./pages/home"));
 const Login = React.lazy(() => import("./pages/login"));
 const SignUp = React.lazy(() => import("./pages/sing-up"));
 const Search = React.lazy(() => import("./pages/search"));
-const Movies = React.lazy(() => import("./pages/movie"));
+const NowPlaying = React.lazy(() => import("./pages/now-playing"));
+const Popluar = React.lazy(() => import("./pages/popular"));
+const TopRated = React.lazy(() => import("./pages/top-rated"));
+const UpComing = React.lazy(() => import("./pages/upcoming"));
 const MovieCategory = React.lazy(() => import("./pages/moviecategory"));
 const MovieDetail = React.lazy(() => import("./pages/moviedetail"));
 const NotFound = React.lazy(() => import("./pages/not-found"));
@@ -16,7 +19,6 @@ const RootLayout = React.lazy(() => import("./layout/root-layout"));
 
 // Component
 import Loading from './pages/loading';
-
 
 
 function App() {
@@ -44,33 +46,29 @@ function App() {
           element: <Search/>
         },
         {
-          path: 'movies/:movieCategory',
-          element: <Movies/>
-        },
-        {
-          path: 'movies/movieitem/:movieId',
-          element: <MovieDetail/>
-        },
-        {
-          path: 'movies/now-playing/movies/movieitem/:movieId',
-          element: <MovieDetail/>
-        },
-        {
-          path: 'movies/popular/movies/movieitem/:movieId',
-          element: <MovieDetail/>
-        },
-        {
-          path: 'movies/top-rated/movies/movieitem/:movieId',
-          element: <MovieDetail/>
-        },
-        {
-          path: 'movies/up-coming/movies/movieitem/:movieId',
-          element: <MovieDetail/>
-        },
-        {
           path:'moviecategory',
           element: <MovieCategory/>
-        }
+        },
+        {
+          path: 'movies/:movieId',
+          element: <MovieDetail/>
+        },
+        {
+          path: 'movies/top-rated',
+          element: <TopRated/>
+        },
+        {
+          path: 'movies/up-coming',
+          element: <UpComing/>
+        },
+        {
+          path: 'movies/now-playing',
+          element: <NowPlaying/>
+        },
+        {
+          path: 'movies/popular',
+          element: <Popluar/>
+        },
       ]
     },
   ]);
