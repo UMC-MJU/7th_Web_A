@@ -2,7 +2,7 @@ import { SearchInput, SearchButton } from "../styles/search.style"
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useCustomFetch from '../hooks/useCustomFetch';
-import Grid from '../components/grid';
+import GridSearch from "../components/grid-search";
 
 
 const Search = () => {
@@ -47,7 +47,7 @@ const Search = () => {
     <>
       <SearchInput placeholder='영화 제목을 입력해주세요...' value={searchValue} onChange={onChangeSearchValue} onKeyDown={handleSearchMovieWithKeyboard}></SearchInput>
       <SearchButton type={'submit'} value={'검색'} onClick={handleSearchMovie}>검색</SearchButton>
-      <Grid url={url} keyword={mq}></Grid>
+      <GridSearch url={url} keyword={mq}></GridSearch>
     </>
   )
 }

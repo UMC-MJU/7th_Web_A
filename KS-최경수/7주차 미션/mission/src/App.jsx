@@ -2,6 +2,14 @@ import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import React, { Suspense, lazy } from 'react';
 import { LoginContextProvider } from './context/LoginContext';
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 // Page Connection
 const Home = React.lazy(() => import("./pages/home"));
@@ -20,63 +28,68 @@ const RootLayout = React.lazy(() => import("./layout/root-layout"));
 // Component
 import Loading from './pages/loading';
 
+const queryClient = new QueryClient()
 
 function App() {
   // Router Connect
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <RootLayout/>,
-      errorElement: <NotFound/>,
+      element: <RootLayout />,
+      errorElement: <NotFound />,
       children: [
         {
           index: true,
-          element: <Home/>
+          element: <Home />
         },
         {
-          path:'login',
-          element: <Login/>
+          path: 'login',
+          element: <Login />
         },
         {
-          path:'singup',
-          element: <SignUp/>
+          path: 'singup',
+          element: <SignUp />
         },
         {
-          path:'search',
-          element: <Search/>
+          path: 'search',
+          element: <Search />
         },
         {
-          path:'moviecategory',
-          element: <MovieCategory/>
+          path: 'moviecategory',
+          element: <MovieCategory />
         },
         {
           path: 'movies/:movieId',
-          element: <MovieDetail/>
+          element: <MovieDetail />
         },
         {
           path: 'movies/top-rated',
-          element: <TopRated/>
+          element: <TopRated />
         },
         {
           path: 'movies/up-coming',
-          element: <UpComing/>
+          element: <UpComing />
         },
         {
           path: 'movies/now-playing',
-          element: <NowPlaying/>
+          element: <NowPlaying />
         },
         {
           path: 'movies/popular',
-          element: <Popluar/>
+          element: <Popluar />
         },
       ]
     },
   ]);
 
+
   return (
-    <Suspense fallback={<Loading/>}>
+    <Suspense fallback={<Loading />}>
       <LoginContextProvider>
-        <RouterProvider router={router} />
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
       </LoginContextProvider>
     </Suspense>
 

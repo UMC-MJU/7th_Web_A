@@ -1,12 +1,10 @@
 import Grid from '../components/grid';
 
 const TopRated = () => {
-
-  let apiUrl = `/movie/top_rated?language=ko-KR&page=1`;
   
   return (
     <>
-    <Grid url={apiUrl}></Grid>
+    <Grid kind={'top_rated'}></Grid>
     </>
   )
 }
