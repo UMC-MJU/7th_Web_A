@@ -6,28 +6,28 @@ import { userInstance } from "../apis/axios-user";
 import { LoginContext } from "../context/LoginContext";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { useGetUserInfo } from "../hooks/queries/useGetUserInfo";
 
 const Navbar = () => {
   const { login, isLogin } = useContext(LoginContext);
-  const [nick, setNick] = useState('');
+  const [nick, setNick] = useState(''); 
+  const {data: user, isPending, isLoading, isError} = useQuery({
+    enabled: !!localStorage.getItem("accessToken"),
+    queryFn: () => useGetUserInfo({url : '/user/me'}),
+    queryKey: ['userInfo'],
+    cacheTime: 100000,
+  });
+
 
   useEffect(() => {
-    if (!!localStorage.getItem("accessToken")) {
-      // const {data: user, isPending, isLoading, isError} = useQuery({
-      //   queryFn: () => getNick()
-      // }) 
-      const getNick = async () => {
-        try{
-          const user = await userInstance.get('/user/me');
-          setNick(user.data.email.split('@')[0]);
-        } catch(error){
-        }
-      }
-      getNick();
+    if (!!localStorage.getItem("accessToken") && user) {
+      setNick(user?.data.email.split('@')[0]);
       isLogin(true);
     }
+  }, [login, user])
 
-  }, [login])
+ 
+
 
   const delteToken = () => {
     alert('로그아웃 되었습니다!');
