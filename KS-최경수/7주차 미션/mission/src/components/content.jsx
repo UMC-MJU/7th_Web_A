@@ -2,23 +2,30 @@ import { styled } from 'styled-components';
 import useCustomFetch from '../hooks/useCustomFetch';
 import Loading from '../pages/loading';
 import { useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useGetMovies } from '../hooks/queries/useGetMovies';
 
 
-const Content = ({url}) => {
-  const {data: moviesDetail, isLoading, isError} = useCustomFetch(url);
-  const movieYears = moviesDetail.data?.release_date.split('-');
-  const movieImgPath = `${import.meta.env.VITE_MOVIE_IMG_URL}${moviesDetail.data?.poster_path}`;
+const Content = ({id}) => {
+  // const {data: moviesDetail, isLoading, isError} = useCustomFetch(url);
+  const {data:moviesDetail , isPending, isLoading, isError} = useQuery({
+    queryFn: () => useGetMovies({category: id, pageParam: 1}),
+    queryKey: ['moviesDetail', id],
+    cacheTime: 100000,
+  })
+  const movieYears = moviesDetail?.release_date.split('-');
+  const movieImgPath = `${import.meta.env.VITE_MOVIE_IMG_URL}${moviesDetail?.poster_path}`;
 
   return (
     <>
       <MoviePosterImg image={movieImgPath}>
         <MovieContainer>
-          <MovieTitle>{moviesDetail.data?.title}</MovieTitle>
-          <MovieGrade>{!isLoading && ('평균')} {moviesDetail.data?.vote_average}</MovieGrade>
+          <MovieTitle>{moviesDetail?.title}</MovieTitle>
+          <MovieGrade>{!isLoading && ('평균')} {moviesDetail?.vote_average}</MovieGrade>
           <MovieYears>{movieYears?.[0]}</MovieYears>
-          <MovieRunTime>{moviesDetail.data?.runtime}{!isLoading && ('분')} </MovieRunTime>
-          <MovieTagLine>{moviesDetail.data?.tagline}</MovieTagLine>
-          <MovieDescription>{moviesDetail.data?.overview}</MovieDescription>
+          <MovieRunTime>{moviesDetail?.runtime}{!isLoading && ('분')} </MovieRunTime>
+          <MovieTagLine>{moviesDetail?.tagline}</MovieTagLine>
+          <MovieDescription>{moviesDetail?.overview}</MovieDescription>
         </MovieContainer>
       </MoviePosterImg>
     </>

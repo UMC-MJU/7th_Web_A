@@ -2,10 +2,16 @@ import { styled } from 'styled-components';
 import CastItems from './castitems';
 import useCustomFetch from '../hooks/useCustomFetch';
 import Loading from '../pages/loading';
+import { useQuery } from '@tanstack/react-query';
+import { useGetMovies } from '../hooks/queries/useGetMovies';
 
 
 const Cast = ( {movieId} ) => {
-  const {data: moviesMembers, isLoading, isError} = useCustomFetch(`/movie/${movieId}/credits?language=ko-KR&page=1`);
+  const {data:moviesMembers, isPending, isLoading, isError} = useQuery({
+    queryFn: () => useGetMovies({category: `${movieId}/credits`, pageParam: 1}),
+    queryKey: ['moviesMember', movieId],
+    cacheTime: 100000,
+  })
 
   if(isLoading) return <Loading/>
 
@@ -13,7 +19,7 @@ const Cast = ( {movieId} ) => {
     <>
     <CastTitle>감독/출연</CastTitle>
     <CastContainer>
-      {moviesMembers.data?.cast.map((member) => (
+      {moviesMembers?.cast.map((member) => (
           <CastItems key={member.id} datas={member}/>
       ))}
     </CastContainer>

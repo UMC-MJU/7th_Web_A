@@ -8,7 +8,7 @@ const MovieDetail = () => {
 
   return (
     <>
-    <Content url={`/movie/${state.id}?language=ko-KR&page=1`}/>
+    <Content id={state.id}/>
     <Cast movieId={state.id}/>
     </>
   )
