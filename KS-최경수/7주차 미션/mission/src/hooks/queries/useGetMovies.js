@@ -1,7 +1,7 @@
 import { axiosInstance } from "../../apis/axios-instance";
 
 const useGetMovies = async ({category, pageParam}) => {
-  const {data} = await axiosInstance.get(`/movie/${category}?language=ko-KR&${pageParam}=1`)
+  const {data} = await axiosInstance.get(`/movie/${category}?language=ko-KR&page=${pageParam}`)
 
   return data;
 }

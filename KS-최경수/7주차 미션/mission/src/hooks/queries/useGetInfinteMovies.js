@@ -4,7 +4,7 @@ import { useGetMovies } from "./useGetMovies";
 function useGetInfiniteMovies(category) {
   return useInfiniteQuery({
     queryFn: ({pageParam}) => useGetMovies({category, pageParam}),
-    queryKey: ['movies', category],
+    queryKey: ['moviesInfinite', category],
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       // const lastMovie = lastPage.results[lastPage.results.length - 1];

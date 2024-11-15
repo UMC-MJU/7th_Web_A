@@ -4,7 +4,7 @@ const Home = () => {
 
   return (
     <>
-    <Grid kind={'popular'}></Grid>
+    <Grid kind={'popular'} flag={'home'}></Grid>
     </>
   )
 }
