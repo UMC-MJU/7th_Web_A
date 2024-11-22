@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import { axiosInstance } from "../apis/axios-instance";
 
-const useCustomPost = (url) => {
+const useCustomPost = () => {
   const [data, setData] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
 
-  const postData = async (title, content, checked = false) => {
-    console.log(title, content, checked)
+  const postData = async ({title, content, checked = false}) => {
       setIsLoading(true);
       try{
-        const {data} =  await axiosInstance.post(url, {
+        const {data} =  await axiosInstance.post('/todo', {
           title,
           content,
           checked
