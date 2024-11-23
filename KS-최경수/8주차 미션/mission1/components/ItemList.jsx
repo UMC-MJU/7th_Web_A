@@ -3,8 +3,20 @@ import { styled } from "styled-components"
 import { Item } from './Exporter';
 import SyncLoader from "react-spinners/SyncLoader"
 import { MdError } from "react-icons/md";
+import { RiFileWarningFill } from "react-icons/ri";
 
 const Itemlist = ({ todos,editingId, setEditingId, patchData, updateTodo, deleteData, isLoading, isError }) => {
+
+  if(todos.length === 0){
+    return(
+      <NoResultContainer>
+        <RiFileWarningFill 
+          size={130}
+        />
+        <NoResultText>검색 결과가 없습니다....</NoResultText>
+      </NoResultContainer>
+    )
+  }
 
   if(isLoading){
     return(
@@ -87,5 +99,19 @@ const ErrorContianer = styled.div`
 
 const ErrorText = styled.p`
   font-size: 16px;
+  font-weight: 600;
+`
+
+const NoResultContainer = styled.div`
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
+const NoResultText = styled.p`
+  font-size: 20px;
   font-weight: 600;
 `
