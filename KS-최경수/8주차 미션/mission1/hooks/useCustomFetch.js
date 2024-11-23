@@ -5,10 +5,10 @@ const useCustomFetch = () => {
   const [data, setData] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [isNoResult, setIsNoResult] = useState(false);
 
-  const fetchData = async (id, search = '') => {
-      const url = id === undefined || id === "" ? `/todo?title=${search}` : `/todo/${id}` ;
-      console.log
+  const fetchData = async (id ,search = '') => {
+      const url = id === undefined ? `/todo?title=${search}` : `/todo/${id}`;
       setIsLoading(true);
       try{
         const {data} =  await axiosInstance.get(url);
@@ -20,7 +20,7 @@ const useCustomFetch = () => {
       }
     }
 
-  return {data, isLoading, isError, fetchData}
+  return {data, isLoading, isError,isNoResult, fetchData}
 }
 
 export default useCustomFetch;

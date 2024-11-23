@@ -13,6 +13,7 @@ const Home = () => {
   const [content, setContent] = useState("");
   const [search, setSearch] = useState("");
   const [editingId, setEditingId] = useState("");
+  const [debounce, setDebounce] = useState(search);
 
   // 데이터 가져오기
   const { data: todos, isLoading, isError, fetchData } = useCustomFetch();
@@ -21,10 +22,14 @@ const Home = () => {
   const { data: result3, deleteData } = useCustomDelete();
   
   useEffect(() => {
-    fetchData();
-  }, [result, result2, result3]);
+    if(debounce){
+      fetchData(undefined, debounce);
+    } else{
+      fetchData();
+    }
 
-  const [debounce, setDebounce] = useState(search);
+  }, [result, result2, result3, debounce]);
+
   useEffect(() => {
     const delaydebounceTimer = setTimeout(() => {
       setDebounce(search)
@@ -32,9 +37,6 @@ const Home = () => {
 
     return () => clearTimeout(delaydebounceTimer);
   }, [search])
-
-  console.log(debounce);
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,7 +51,6 @@ const Home = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    setSearch(e.target.value);
   }
 
   const updateTodo = (pid, ptitle, pcontent) => {
