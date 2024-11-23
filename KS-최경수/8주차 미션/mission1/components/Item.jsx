@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { styled } from "styled-components"
+import { useNavigate } from 'react-router-dom';
 
 
 const Item = ({ data, editingId, setEditingId, patchData, updateTodo, deleteData }) => {
+  const navigate = useNavigate();
+  
   const [title, setTitle] = useState(data.title);
   const [content, setContent] = useState(data.content);
 
 
   return (
-    <ItemContainer onClick={() => {console.log(data.id)}}>
+    <ItemContainer>
       <input
         type='checkBox'
         defaultChecked={data.checked}
@@ -16,14 +19,14 @@ const Item = ({ data, editingId, setEditingId, patchData, updateTodo, deleteData
           patchData({id: data.id, checked: !data.checked} )
         }}
       />
-      <TextContainer>
+      <TextContainer >
         {data.id !== editingId ? 
         (
         /* 수정이 아닐때 */
-          <>
+          <div onClick={() => {navigate(`/todo/${data.id}`, {state:{id : data.id}})}}>
             <p>{title}</p>
             <p>{content}</p>
-          </>
+          </div>
         ) : 
         /* 수정이 일때 */
         (

@@ -11,6 +11,7 @@ const Home = () => {
   // TODO 상태값 관리
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [search, setSearch] = useState("");
   const [editingId, setEditingId] = useState("");
 
   // 데이터 가져오기
@@ -18,10 +19,22 @@ const Home = () => {
   const { data: result, postData } = useCustomPost();
   const { data: result2, patchData } = useCustomPatch();
   const { data: result3, deleteData } = useCustomDelete();
-
+  
   useEffect(() => {
     fetchData();
-  }, [result, result2, result3])
+  }, [result, result2, result3]);
+
+  const [debounce, setDebounce] = useState(search);
+  useEffect(() => {
+    const delaydebounceTimer = setTimeout(() => {
+      setDebounce(search)
+    }, 1000);
+
+    return () => clearTimeout(delaydebounceTimer);
+  }, [search])
+
+  console.log(debounce);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,6 +47,11 @@ const Home = () => {
     }
   }
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearch(e.target.value);
+  }
+
   const updateTodo = (pid, ptitle, pcontent) => {
     patchData({ id: pid, title: ptitle, content: pcontent })
     setEditingId('')
@@ -44,7 +62,9 @@ const Home = () => {
         <Input placeholderText={"제목을 입력해주세요"} text={title} fun={setTitle} handler={handleSubmit} />
         <Input placeholderText={"내용을 입력해주세요"} text={content} fun={setContent} handler={handleSubmit} />
         <Button type='submit' onClick={handleSubmit}>ToDo생성</Button>
+        <Input placeholderText={"검색할 내용을 입력해보세요"} text={search} fun={setSearch} handler={handleSearch} margin="40px"/>
       </InputContainer>
+      
       <Itemlist
         todos={todos}
         editingId={editingId}
@@ -55,6 +75,7 @@ const Home = () => {
         isLoading={isLoading}
         isError={isError}
       />
+
     </>
   );
 };

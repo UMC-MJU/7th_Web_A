@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled } from "styled-components"
-const Input = ({ placeholderText, text, fun, handler }) => {
+const Input = ({ placeholderText, text, fun, handler, margin }) => {
 
   return (
     <form onSubmit={handler}>
@@ -9,6 +9,7 @@ const Input = ({ placeholderText, text, fun, handler }) => {
         value={text}
         placeholder={placeholderText}
         onChange={(e) => { fun(e.target.value) }}
+        margintop = {margin}
       />
     </form>
   );
@@ -22,4 +23,5 @@ const InputCommon = styled.input`
   border-radius: 10px;
   border: 1px solid gray;
   padding-left: 10px;
+  margin-top: ${(props) => props.margintop};
 `
