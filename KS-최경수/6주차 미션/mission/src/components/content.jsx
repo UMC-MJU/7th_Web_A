@@ -8,17 +8,15 @@ const Content = ({url}) => {
   const {data: moviesDetail, isLoading, isError} = useCustomFetch(url);
   const movieYears = moviesDetail.data?.release_date.split('-');
   const movieImgPath = `${import.meta.env.VITE_MOVIE_IMG_URL}${moviesDetail.data?.poster_path}`;
-  // 5주차 강의에서 다뤄진 CustomHook -> Suspense로 리팩토링하여 주석처리
-  // if(isLoading) return <Loading/>
 
   return (
     <>
       <MoviePosterImg image={movieImgPath}>
         <MovieContainer>
           <MovieTitle>{moviesDetail.data?.title}</MovieTitle>
-          <MovieGrade>평균 {moviesDetail.data?.vote_average}</MovieGrade>
+          <MovieGrade>{!isLoading && ('평균')} {moviesDetail.data?.vote_average}</MovieGrade>
           <MovieYears>{movieYears?.[0]}</MovieYears>
-          <MovieRunTime>{moviesDetail.data?.runtime} 분</MovieRunTime>
+          <MovieRunTime>{moviesDetail.data?.runtime}{!isLoading && ('분')} </MovieRunTime>
           <MovieTagLine>{moviesDetail.data?.tagline}</MovieTagLine>
           <MovieDescription>{moviesDetail.data?.overview}</MovieDescription>
         </MovieContainer>

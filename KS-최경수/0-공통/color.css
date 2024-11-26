@@ -35,4 +35,13 @@
   --w5-disabledbuttonColor: #484848;
   --w5-errorColor: #ff0000;
   --w5-background: #000000;
+
+  /* 6주차 사용 컬러 */
+  --w6-buttonColor: #FA2F66;
+  --w6-textcolor : #FFFFFF;
+
+  /* 7주차 사용 컬러 */
+  --w7-buttonColor: #FA2F66;
+  --w7-disabledbuttonColor: #484848;
+  --w7-textcolor : #FFFFFF;
 }

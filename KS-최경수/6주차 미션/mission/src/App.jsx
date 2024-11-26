@@ -1,23 +1,17 @@
 import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import React, { Suspense, lazy } from 'react';
+import { LoginContextProvider } from './context/LoginContext';
 
 // Page Connection
-// import Home from './pages/home';
-// import Login from './pages/login';
-// import SignUp from './pages/sing-up';
-// import Search from './pages/search';
-// import Movies from './pages/movie';
-// import MovieCategory from './pages/moviecategory';
-// import MovieDetail from './pages/moviedetail';
-// import NotFound from './pages/not-found';
-// import RootLayout from './layout/root-layout';
-
 const Home = React.lazy(() => import("./pages/home"));
 const Login = React.lazy(() => import("./pages/login"));
 const SignUp = React.lazy(() => import("./pages/sing-up"));
 const Search = React.lazy(() => import("./pages/search"));
-const Movies = React.lazy(() => import("./pages/movie"));
+const NowPlaying = React.lazy(() => import("./pages/now-playing"));
+const Popluar = React.lazy(() => import("./pages/popular"));
+const TopRated = React.lazy(() => import("./pages/top-rated"));
+const UpComing = React.lazy(() => import("./pages/upcoming"));
 const MovieCategory = React.lazy(() => import("./pages/moviecategory"));
 const MovieDetail = React.lazy(() => import("./pages/moviedetail"));
 const NotFound = React.lazy(() => import("./pages/not-found"));
@@ -25,7 +19,6 @@ const RootLayout = React.lazy(() => import("./layout/root-layout"));
 
 // Component
 import Loading from './pages/loading';
-
 
 
 function App() {
@@ -53,24 +46,38 @@ function App() {
           element: <Search/>
         },
         {
-          path: 'movies/:movieCategory',
-          element: <Movies/>
+          path:'moviecategory',
+          element: <MovieCategory/>
         },
         {
-          path: 'movies/movieitem/:movieId',
+          path: 'movies/:movieId',
           element: <MovieDetail/>
         },
         {
-          path:'moviecategory',
-          element: <MovieCategory/>
-        }
+          path: 'movies/top-rated',
+          element: <TopRated/>
+        },
+        {
+          path: 'movies/up-coming',
+          element: <UpComing/>
+        },
+        {
+          path: 'movies/now-playing',
+          element: <NowPlaying/>
+        },
+        {
+          path: 'movies/popular',
+          element: <Popluar/>
+        },
       ]
     },
   ]);
 
   return (
     <Suspense fallback={<Loading/>}>
-          <RouterProvider router={router} />
+      <LoginContextProvider>
+        <RouterProvider router={router} />
+      </LoginContextProvider>
     </Suspense>
 
   )

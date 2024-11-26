@@ -1,24 +1,31 @@
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import Items from './items';
-import axios from "axios";
-import { axiosInstance } from '../apis/axios-instance';
 import useCustomFetch from '../hooks/useCustomFetch';
-import Loading from '../pages/loading';
+import GridListSkeleton from './grid-list-skeleton';
 
-const Grid = ({url}) => {
+const Grid = ({url, keyword}) => {
   const {data:movies, isLoading, isError} = useCustomFetch(url);
 
-   // 5주차 강의에서 다뤄진 CustomHook -> Suspense로 리팩토링하여 주석처리
-  // if(isLoading){
-  //   return <Loading/>
-  // }
 
-  // if(isError){
-  //   return <div>
-  //     <h1 style={{color: 'white'}}>에러 입니다.... </h1>
-  //   </div>
-  // }
+  // 로딩시 보여지는 skeleton UI
+  if(isLoading){
+    return (
+      <ItemsContainer>
+        <GridListSkeleton number={20}/>
+      </ItemsContainer>
+
+  )
+  }
+
+  if(keyword && movies.data?.results.length === 0) {
+    return (
+      <WarningContianer>
+        <h1>해당하는 검색어 {keyword}에</h1>
+        <h1>해당하는 데이터가 없습니다.</h1>
+      </WarningContianer>
+    )
+  }
 
   return (
     <>
@@ -48,3 +55,10 @@ const ItemsContainer = styled.main`
   }
 `
 
+const WarningContianer = styled.main`
+  text-align: center;
+  margin-top: 30px;
+
+  h1{
+  }
+`
