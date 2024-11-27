@@ -5,8 +5,9 @@ import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 import { useState, useContext } from 'react';
 import { LoginContext } from '../context/LoginContext.jsx';
-import { validateLogin } from '../utils/validate.js';
-import { userInstance } from '../apis/axios-user.js';
+import { useMutation } from '@tanstack/react-query';
+import { loginUserInfo } from '../apis/getUserInfo';
+import { queryClient } from '../App';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -26,23 +27,45 @@ const Login = () => {
     resolver: yupResolver(schema)
   });
 
-  const onSubmit = async (data) => {
-    try{
-      const response = await axios.post(`${import.meta.env.VITE_USER_API_URL}/auth/login`, {
-        email: data.email,
-        password: data.password
+  const {mutate:postUserInfo} = useMutation({
+    mutationFn: loginUserInfo,
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({
+        queryKey:["User"],
       })
-      if(response.status == 201){
-        localStorage.setItem("accessToken", response.data.accessToken);
-        localStorage.setItem("refreshToken", response.data.refreshToken);
-        isLogin(true);
-        alert("로그인이 완료되었습니다!");
-        return navigate("/");
-      }
-      console.log(response);
-    } catch(error){
+      localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("refreshToken", data.refreshToken);
+      isLogin(true);
+      alert("로그인이 완료되었습니다.")
+      return navigate("/");
+    },
+    onError: (error) => {
       console.log(error);
-    }
+    },
+    onSettled: () => {
+
+    },
+  })
+
+
+  const onSubmit = async (data) => {
+    postUserInfo({email: data.email, password: data.password});
+    // try{
+    //   const response = await axios.post(`${import.meta.env.VITE_USER_API_URL}/auth/login`, {
+    //     email: data.email,
+    //     password: data.password
+    //   })
+    //   if(response.status == 201){
+    //     localStorage.setItem("accessToken", response.data.accessToken);
+    //     localStorage.setItem("refreshToken", response.data.refreshToken);
+    //     isLogin(true);
+    //     alert("로그인이 완료되었습니다!");
+    //     return navigate("/");
+    //   }
+    //   console.log(response);
+    // } catch(error){
+    //   console.log(error);
+    // }
   }
 
   

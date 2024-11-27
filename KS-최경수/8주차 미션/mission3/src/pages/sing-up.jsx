@@ -4,6 +4,10 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import { resgiterUserInfo } from '../apis/getUserInfo';
+import { queryClient } from '../App';
+
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -20,20 +24,25 @@ const SignUp = () => {
     resolver: yupResolver(schema)
   });
 
-  const onSubmit = async (data) => {
-    try {
-      const response = await axios.post(`${import.meta.env.VITE_USER_API_URL}/auth/register`, {
-        email: data.email,
-        password: data.password,
-        passwordCheck: data.passwordcheck,
-     }); 
-     if(response.status == 201) {
+  const {mutate:postUserInfo} = useMutation({
+    mutationFn: resgiterUserInfo,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey:["User"],
+      })
       alert("회원가입이 완료되었습니다.")
       return navigate("/login");
-    }
-    } catch(error){
+    },
+    onError: (error) => {
       console.log(error);
-    }
+    },
+    onSettled: () => {
+
+    },
+  })
+
+  const onSubmit = (data) => {
+    postUserInfo({email: data.email,password: data.password,passwordCheck: data.passwordcheck});
   }
 
   return (

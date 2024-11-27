@@ -28,7 +28,7 @@ const RootLayout = React.lazy(() => import("./layout/root-layout"));
 // Component
 import Loading from './pages/loading';
 
-const queryClient = new QueryClient()
+export const queryClient = new QueryClient()
 
 function App() {
   // Router Connect

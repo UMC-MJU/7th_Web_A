@@ -15,4 +15,4 @@ userInstance.interceptors.request.use((config) => {
   return config;
 })
 
-export {userInstance}
+export {userInstance};
