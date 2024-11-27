@@ -50,22 +50,6 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     postUserInfo({email: data.email, password: data.password});
-    // try{
-    //   const response = await axios.post(`${import.meta.env.VITE_USER_API_URL}/auth/login`, {
-    //     email: data.email,
-    //     password: data.password
-    //   })
-    //   if(response.status == 201){
-    //     localStorage.setItem("accessToken", response.data.accessToken);
-    //     localStorage.setItem("refreshToken", response.data.refreshToken);
-    //     isLogin(true);
-    //     alert("로그인이 완료되었습니다!");
-    //     return navigate("/");
-    //   }
-    //   console.log(response);
-    // } catch(error){
-    //   console.log(error);
-    // }
   }
 
   
