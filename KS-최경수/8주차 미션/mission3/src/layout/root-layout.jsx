@@ -8,13 +8,13 @@ import "../../../../0-공통/color.css";
 const RootLayout = () => {
   return (
     <>
-    <Navbar />
-    <FrameContainer>
+      <Navbar />
+      <FrameContainer>
         <Sidebar />
-      <ContentWrapper>
-        <Outlet />
-      </ContentWrapper>
-    </FrameContainer>
+        <ContentWrapper>
+          <Outlet />
+        </ContentWrapper>
+      </FrameContainer>
     </>
   )
 }
