@@ -1,15 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Item = () => {
+const Item = ({text, fun}) => {
+  console.log(text)
   return (
     <ItemContainer>
       <LeftWrapper>
         <CheckBox type="checkbox" />
-        <Label>테스트kokokokokpokpokkokpokpo</Label>
+        <Label>{text}</Label>
       </LeftWrapper>
       <RightWrapper>
-        <DeleteButton>삭제</DeleteButton>
+        <DeleteButton onClick={fun}>삭제</DeleteButton>
       </RightWrapper>
     </ItemContainer>
   );

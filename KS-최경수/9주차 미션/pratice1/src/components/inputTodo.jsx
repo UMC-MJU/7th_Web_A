@@ -1,22 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { add } from '../redux/todoSlice';
 
 const InputTodo = ({ textEntered, fun, addfun }) => {
+
+  const dispatch = useDispatch();
+
+  const [todolist, setTodolist] = useState(
+    {id: 0, text:""}
+  )
+
+
   // 렌더링 방지
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (todolist.text !== "") dispatch(add(todolist.text))
+    else alert("할일을 입력해주세요!")
+    setTodolist({text : ""})
   }
+
+  const handleText = (e) => {
+    setTodolist({text : e.target.value});
+  }
+
+
 
   return (
     <form onSubmit={handleSubmit}>
-      <Input
+      <Input 
         type="text"
-        value={textEntered}
+        value={todolist.text}
         placeholder="할일을 작성해보세요. 엔터를 누르면 자동으로 추가 됩니다."
-        onChange={(e) => fun(e.target.value)}
-        onKeyUp={(e) => {
-          if (e.key === "Enter" && textEntered !== "") addfun();
-        }}
+        onChange={handleText}
       />
     </form>
   );

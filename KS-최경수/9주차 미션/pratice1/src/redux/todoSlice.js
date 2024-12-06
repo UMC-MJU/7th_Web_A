@@ -14,16 +14,17 @@ export const todoSlice = createSlice({
         text : action.payload,
         complete : false, 
       })
-    }
-  },
-  remove : (state, action) => {
-    return state.filter(e => e.id !== action.payload)
-  },
-
-  complete : (state, action) => {
-    return state.map(e => e.id === action.payload ? {...e, complete : !e.complete} : e )
+    },
+    remove : (state, action) => {
+      return state.filter(e => e.id !== action.payload)
+    },
+  
+    complete : (state, action) => {
+      return state.map(e => e.id === action.payload ? {...e, complete : !e.complete} : e )
+    },
   }
 })
+
 
 export const {add, remove, complete} = todoSlice.actions
 export default todoSlice.reducer
