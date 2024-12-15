@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { axiosInstance } from "../apis/axios-instance";
 
-//const {data, isLoading, isError} = useCustomFetch('url')
-
-const useCustomFetch = (url) => {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+// 사용자 정의 fetch 훅
+const useCustomFetch = (url: string) => {
+  const [data, setData] = useState<any>(null); // 여기서 any는 필요한 타입으로 변경할 수 있습니다.
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,7 +39,7 @@ const useCustomFetch = (url) => {
             setData(response.data.results || []); // 목록의 경우 results를 사용
           }
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error("API 호출 에러:", error);
         setIsError(true);
       } finally {
